@@ -1,0 +1,24 @@
+ north east
+ [
+    {
+        lat: 40.24494329371422,
+        lng: -3.940658569335937,
+    }, // southwest
+    {
+        lat: 40.55293936825807,
+        lng: -3.45245361328125,
+    }
+]
+
+query  {
+  randomLocation (pointsTotal: 30, northEast: {
+        lat: 40.24494329371422,
+        lng: -3.940658569335937,
+    }, southWest:  {
+        lat: 40.55293936825807,
+        lng: -3.45245361328125,
+    }){
+    lat
+    lng
+  }
+}
