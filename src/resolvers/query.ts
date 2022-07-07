@@ -1,4 +1,5 @@
 import { IResolvers } from "@graphql-tools/utils";
+import { randomValues } from "../helpers/random-world-location";
 
 /**
  * Resolver to implement queries definitions solutions to return responses.
@@ -27,6 +28,17 @@ const queryResolvers: IResolvers = {
         data: 1203893490,
       };
     },
+    randomLocation: (// root info. In type roots always undefined
+    _: void,
+    // Arguments when specify in schema arguments. If not add arguments
+    args: { pointsTotal: number,  northEast: {lat: number, lng: number}, southWest:  { lat: number, lng: number} },
+    // Use to shared database instance object, token,...
+    context: unknown,
+    // GraphQL operation all info
+    info: unknown,) => {
+      console.log(args);
+      return randomValues(args.pointsTotal, args.northEast, args.southWest);
+    }
   },
 };
 

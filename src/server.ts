@@ -1,9 +1,12 @@
 import { ApolloServer } from "apollo-server-express";
 import compression from "compression";
 import express, { Application } from "express";
-import { GraphQLSchema } from "graphql";
+import { execute, GraphQLSchema, subscribe } from "graphql";
 import { createServer, Server } from "http";
 import { Request, Response } from "express";
+import { SubscriptionServer } from "subscriptions-transport-ws";
+import { PubSub } from "graphql-subscriptions";
+
 class GraphQLServer {
   // Properties
   private app!: Application;
@@ -33,17 +36,30 @@ class GraphQLServer {
   }
 
   private async configApolloServerExpress() {
-
+    const pubsub = new PubSub();
     const apolloServer = new ApolloServer({
       schema: this.schema, // Add combination schema and resolvers to working done
       introspection: true, // To use to generate doc from schema
+      context: async () => {
+        return {
+          pubsub,
+        };
+      },
     });
 
     await apolloServer.start();
 
     apolloServer.applyMiddleware({ app: this.app, cors: true });
 
-
+    SubscriptionServer.create(
+      {
+        schema: this.schema,
+        execute,
+        subscribe,
+        onConnect: () => ({ pubsub, user: "Anartz" }),
+      },
+      { server: this.httpServer, path: apolloServer.graphqlPath }
+    );
   }
 
   private configRoutes() {
