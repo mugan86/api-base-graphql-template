@@ -6,9 +6,10 @@
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "@typescript-eslint/no-explicit-any": ["error", {
+    "@typescript-eslint/no-explicit-any": ["off", {
         "fixToUnknown": true
     }],
-    "curly": "error"
+    "curly": "error",
+    "@typescript-eslint/no-inferrable-types": "off"
   }
 }

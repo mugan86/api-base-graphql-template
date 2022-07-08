@@ -1,7 +1,31 @@
 # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
+"""
+Queries operations => GET (REST).
+"""
 type Query {
   hello: String!
   helloWithName(name: String): String!
   peopleNumber: Data!
+  randomLocation( pointsTotal: Int = 1, northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}): [Location]
+  lastMessage: String!
+}
+
+"""
+Mutation operations (Modify info) => POST, PUT, PATCH, DELETE (REST).
+"""
+type Mutation {
+    connect(id: Int!): Boolean
+    disconnect(id: Int!): Boolean
+}
+
+# ## 
+type Location {
+    lat: Float
+    lng: Float
+}
+
+input LocationInput { 
+    lat: Float
+    lng: Float
 }

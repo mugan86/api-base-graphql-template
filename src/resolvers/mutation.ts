@@ -5,48 +5,47 @@
 
 import { IResolvers } from "@graphql-tools/utils";
 import users from "./../data/users.json";
-import fs from 'fs';
 import path from "path";
+import { existFile, readFileSync, writeFileSync } from "../helpers/file";
+import { randomValues } from "../helpers/random-world-location";
 
-const existFile = (path: string) => {
-    return fs.existsSync(path);
-}
-  
+const addItem = (id: number, connect: boolean) => {
+  return {
+    id,
+    data: new Date().toISOString(),
+    connect,
+    location: randomValues(1)[0]
+  };
+};
 
-const saveConnection = (id: number) => {
-    const jsonPath = path.join(__dirname, '..', 'data', 'connections.json');
-    if(!existFile(jsonPath)) {
-        console.log('wwjwjw')
-        fs.writeFileSync(jsonPath, JSON.stringify([
-            {
-                id,
-                data: new Date().toISOString(),
-                connect: true
-            }
-        ]))
-        return;
+const saveConnection = (id: number, connect: boolean) => {
+  const jsonPath = path.join(__dirname, "..", "data", "connections.json");
+  let connections = [];
+  try {
+    if (!existFile(jsonPath)) {
+      connections = writeFileSync(jsonPath, [
+        addItem(id, connect)
+      ]);
+    } else {
+      connections = readFileSync(jsonPath);
+      connections.push(addItem(id, connect) );
+      writeFileSync(jsonPath, connections);
     }
-    const connections = JSON.parse(fs.readFileSync(jsonPath,
-            {encoding:'utf8', flag:'r'}));
-    connections.push( {
-        id,
-        data: new Date().toISOString(),
-        connect: true
-    })
-    fs.writeFileSync(jsonPath, JSON.stringify(connections))
-    
-    
-    console.log('This is after the read call');
-}
+    // Emitir cambios con las conexiones
+    return true;
+  } catch (e: any) {
+    return false;
+  }
+
+};
 
 const mutationResolvers: IResolvers = {
   Mutation: {
     connect: (_: void, args: { id: number }) => {
-      console.log(args.id);
-      const user = users.find((item) => item.id === +args.id);
-      console.log(user);
-      saveConnection(args.id);
-      return !user ? false : true;
+      return users.find((item) => item.id === +args.id) ? saveConnection(args.id, true) : false;
+    },
+    disconnect: (_: void, args: { id: number }) => {
+      return users.find((item) => item.id === +args.id) ? saveConnection(args.id, false) : false;
     },
   },
 };

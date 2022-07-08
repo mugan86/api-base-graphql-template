@@ -8,7 +8,7 @@ export const randomValues = (
     lat: 37.2709008,
     lng: -6.9571999,
   }
-) => {
+): Array<{lat: number, lng: number}> => {
   const lngSpan = northEast.lng - southWest.lng;
   const latSpan = northEast.lat - southWest.lat;
 
