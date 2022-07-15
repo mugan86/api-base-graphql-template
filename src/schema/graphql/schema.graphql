@@ -7,8 +7,14 @@ type Query {
   hello: String!
   helloWithName(name: String): String!
   peopleNumber: Data!
+  countUsers: Int!
   randomLocation( pointsTotal: Int = 1, northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}): [Location]
-  lastMessage: String!
+  users (page: Int = 1, itemsPerPage: Int = 20): [User!]!
+  """
+  Deshabilitaré, para que de el error que está añadido 
+  en resolvers, pero no en el schema
+  """
+  user (id: Int!): User
 }
 
 """
@@ -17,6 +23,20 @@ Mutation operations (Modify info) => POST, PUT, PATCH, DELETE (REST).
 type Mutation {
     connect(id: Int!): Boolean
     disconnect(id: Int!): Boolean
+}
+
+# User general info
+type User {
+    # ID asignado al usuario
+    id: Int!
+    # Nombre de pila
+    name: String!
+    # Apellidos
+    lastname: String!
+    # Correo electrónico
+    email: String!
+    # Imagen del perfil
+    avatar: String!
 }
 
 # ## 
