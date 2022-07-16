@@ -1,0 +1,9 @@
+# UserInput from './../../inputs/user.graphql'
+type Mutation {
+    "Añadir un usuario"
+    addUser (user: UserInput!) : Result
+    "Actualizar usuario seleccionado"
+    updateUser (user: UserInput!): Result
+    "Eliminar usuario seleccionado"
+    deleteUser (id: Int!): Result
+}

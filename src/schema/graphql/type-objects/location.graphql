@@ -1,0 +1,8 @@
+
+"""
+Punto con sus coordenadas geográficas que usaremos para las ubicaciones de los usuarios
+"""
+type Location {
+    lat: Float
+    lng: Float
+}

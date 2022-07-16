@@ -1,0 +1,21 @@
+# LocationInput from './../../inputs/location.graphql'
+
+"""
+Queries operations => GET (REST).
+"""
+type Query {
+    "Saludo inicial"
+    hello: String!
+    "Saludo inicial con nombre dinámico"
+    helloWithName(name: String): String!
+    """
+    Obtenemos las ubicaciones aleatorias de un rectángulo acotado en coordenadas
+    especificando el punto del noreste y el punto de suroeste. 
+    Podríamos especificar las otras dos esquinas, pero tendría que ser:
+    Noroeste / Sureste. Hay que respetar eso para acotar una zona correctamente. 
+    Por defecto, está asignado a la zona de Madrid:
+    * northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, 
+    * southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}
+    """
+    randomLocation( pointsTotal: Int = 1, northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}): [Location]
+}

@@ -1,0 +1,13 @@
+"User object properties"
+type User {
+    "ID asignado al usuario"
+    id: Int!
+    "Nombre de pila"
+    name: String!
+    "Apellidos"
+    lastname: String!
+    "Correo electrónico"
+    email: String!
+    "Imagen del perfil"
+    avatar: String!
+}

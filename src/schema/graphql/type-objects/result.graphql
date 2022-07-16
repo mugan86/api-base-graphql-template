@@ -1,0 +1,8 @@
+# User from './user.graphql'
+
+type Result {
+    status: Boolean!
+    message: String!
+    list: [User]
+    item: User
+}

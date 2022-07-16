@@ -1,0 +1,5 @@
+"Entrada para especificar las coordenadas"
+input LocationInput { 
+    lat: Float
+    lng: Float
+}

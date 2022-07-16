@@ -1,0 +1,8 @@
+"""
+Mutation operations (Modify info) => POST, PUT, PATCH, DELETE (REST).
+"""
+type Mutation {
+    "Acción en la que un usuario se conecta especificando su id"
+    connect(id: Int!): Boolean
+    disconnect(id: Int!): Boolean
+}
