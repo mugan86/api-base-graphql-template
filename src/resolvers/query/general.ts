@@ -1,7 +1,6 @@
 import { IResolvers } from "@graphql-tools/utils";
-import { paginate } from "../helpers/pagination";
-import { randomValues } from "../helpers/random-world-location";
-import users from "./../data/users.json";
+import { randomValues } from "../../helpers/random-world-location";
+import users from "../../data/users.json";
 
 /**
  * Resolver to implement queries definitions solutions to return responses.

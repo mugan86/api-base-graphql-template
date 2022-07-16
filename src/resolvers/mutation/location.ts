@@ -4,14 +4,15 @@
  */
 
 import { IResolvers } from "@graphql-tools/utils";
-import users from "./../data/users.json";
+import users from "../../data/users.json";
 import path from "path";
-import { existFile, readFileSync, writeFileSync } from "../helpers/file";
-import { randomValues } from "../helpers/random-world-location";
-
+import { existFile, readFileSync, writeFileSync } from "../../helpers/file";
+import { randomValues } from "../../helpers/random-world-location";
+import connections from "./../../data/connections.json";
 const addItem = (id: number, connect: boolean) => {
   return {
-    id,
+    id: (!connections.length) ? 1 : connections.length + 1,
+    user: id,
     data: new Date().toISOString(),
     connect,
     location: randomValues(1)[0]
@@ -19,7 +20,7 @@ const addItem = (id: number, connect: boolean) => {
 };
 
 const saveConnection = (id: number, connect: boolean) => {
-  const jsonPath = path.join(__dirname, "..", "data", "connections.json");
+  const jsonPath = path.join(__dirname, "..", "..", "data", "connections.json");
   let connections = [];
   try {
     if (!existFile(jsonPath)) {
@@ -41,12 +42,10 @@ const saveConnection = (id: number, connect: boolean) => {
 
 const mutationResolvers: IResolvers = {
   Mutation: {
-    connect: (_: void, args: { id: number }) => {
-      return users.find((item) => item.id === +args.id) ? saveConnection(args.id, true) : false;
-    },
-    disconnect: (_: void, args: { id: number }) => {
-      return users.find((item) => item.id === +args.id) ? saveConnection(args.id, false) : false;
-    },
+    connect: (_: void, args: { id: number, connect: boolean }) => {
+      console.log(args, users.find((item) => item.id === +args.id));
+      return users.find((item) => item.id === +args.id) ? saveConnection(args.id, args.connect) : false;
+    }
   },
 };
 

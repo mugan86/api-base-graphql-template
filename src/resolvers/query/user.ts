@@ -7,7 +7,7 @@ import users from "./../../data/users.json";
  * Resolver to implement queries definitions solutions to return responses.
  * Only this type root when we NOT modify data, only read
  */
-const queryResolvers: IResolvers = {
+const queryUsersResolvers: IResolvers = {
   Query: {
     users: (_: void, args: { page: number, itemsPerPage: number } = { page: 1, itemsPerPage: 20 }):
       {
@@ -47,4 +47,4 @@ const queryResolvers: IResolvers = {
   },
 };
 
-export default queryResolvers;
+export default queryUsersResolvers;

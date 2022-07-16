@@ -1,0 +1,5 @@
+# LogConnectionData from './../../result.graphql'
+
+type Query {
+    logConnections (page: Int = 1, itemsPerPage: Int = 20): LogConnectionData
+}

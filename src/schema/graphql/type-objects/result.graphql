@@ -1,8 +1,16 @@
 # User from './user.graphql'
+# LogConnection from 'log-connection.graphql'
 
-type Result {
+type UserData {
     status: Boolean!
     message: String!
     list: [User]
     item: User
+}
+
+type LogConnectionData {
+    status: Boolean!
+    message: String!
+    list: [LogConnection]
+    item: LogConnection
 }

@@ -1,0 +1,18 @@
+# Location from './location.graphql'
+
+"""
+Obtenemos la información de todas las conexiones / desconexiones
+que han relizado los usuarios de este sistema
+"""
+type LogConnection {
+    "identificador de la connexión realizada"
+    id: Int!
+    "id del usuario, lo interesante es cambiarlo por el usuario"
+    user: Int!
+    "Fecha del evento de conexión / desconexión"
+    data: String!
+    "Para especificar si el evento ha sido conexión / desconexión"
+    connect: String!
+    "Localización donde estaba"
+    location: Location!
+}

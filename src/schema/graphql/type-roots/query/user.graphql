@@ -1,15 +1,15 @@
-# Result from './../../result.graphql'
+# UserData from './../../result.graphql'
 
 type Query {
    "Obtenemos el total de usuarios almacenado en el fichero"
     countUsers: Int!
     "Obtenemos los usuarios en bloques de 20 usuarios por defecto mediante paginación"
-    users (page: Int = 1, itemsPerPage: Int = 20): Result
+    users (page: Int = 1, itemsPerPage: Int = 20): UserData
     """
     Obtenemos el usuario usando el filtro para dar el usuario seleccionado.
     Deshabilitaré, para que de el error que está añadido 
     en resolvers, pero no en el schema
     Error: Query.user defined in resolvers, but not in schema
     """
-    user (id: Int!): Result!
+    user (id: Int!): UserData!
 }
