@@ -4,17 +4,31 @@
 Queries operations => GET (REST).
 """
 type Query {
-  hello: String!
-  helloWithName(name: String): String!
-  peopleNumber: Data!
-  countUsers: Int!
-  randomLocation( pointsTotal: Int = 1, northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}): [Location]
-  users (page: Int = 1, itemsPerPage: Int = 20): [User!]!
-  """
-  Deshabilitaré, para que de el error que está añadido 
-  en resolvers, pero no en el schema
-  """
-  user (id: Int!): User
+    "Saludo inicial"
+    hello: String!
+    "Saludo inicial con nombre dinámico"
+    helloWithName(name: String): String!
+    """
+    Obtenemos las ubicaciones aleatorias de un rectángulo acotado en coordenadas
+    especificando el punto del noreste y el punto de suroeste. 
+    Podríamos especificar las otras dos esquinas, pero tendría que ser:
+    Noroeste / Sureste. Hay que respetar eso para acotar una zona correctamente. 
+    Por defecto, está asignado a la zona de Madrid:
+    * northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, 
+    * southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}
+    """
+    randomLocation( pointsTotal: Int = 1, northEast: LocationInput = {lat: 42.2870876, lng: 3.2725862}, southWest: LocationInput = { lat: 37.2709008, lng: -6.9571999}): [Location]
+    "Obtenemos el total de usuarios almacenado en el fichero"
+    countUsers: Int!
+    "Obtenemos los usuarios en bloques de 20 usuarios por defecto mediante paginación"
+    users (page: Int = 1, itemsPerPage: Int = 20): Result
+    """
+    Obtenemos el usuario usando el filtro para dar el usuario seleccionado.
+    Deshabilitaré, para que de el error que está añadido 
+    en resolvers, pero no en el schema
+    Error: Query.user defined in resolvers, but not in schema
+    """
+    user (id: Int!): Result!
 }
 
 """
@@ -37,6 +51,13 @@ type User {
     email: String!
     # Imagen del perfil
     avatar: String!
+}
+
+type Result {
+    status: Boolean!
+    message: String!
+    list: [User]
+    item: User
 }
 
 # ## 

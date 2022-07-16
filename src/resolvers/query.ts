@@ -23,14 +23,7 @@ const queryResolvers: IResolvers = {
       console.log(info);
       return `Hola ${args.name}`;
     },
-    peopleNumber: () => {
-      return {
-        message: "People data message!",
-        status: true,
-        data: 1203893490,
-      };
-    },
-    countUsers: () => users.length,
+    countUsers: () => (users) ? users.length : 0,
     randomLocation: (// root info. In type roots always undefined
       _: void,
       // Arguments when specify in schema arguments. If not add arguments
@@ -39,11 +32,6 @@ const queryResolvers: IResolvers = {
       console.log(args);
       return randomValues(args.pointsTotal, args.northEast, args.southWest);
     },
-    users: (_: void, args: { page: number, itemsPerPage: number } = { page: 1, itemsPerPage: 20 }):
-      Array<any> =>
-      paginate(users, args.itemsPerPage, args.page),
-      // Error: Query.user defined in resolvers, but not in schema (cuando no está definido en el schema)
-    user: (_: void, args: {id: number}) => users.filter(user => user.id === args.id)[0]
   },
 };
 
