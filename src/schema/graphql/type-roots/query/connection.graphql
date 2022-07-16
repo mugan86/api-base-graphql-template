@@ -1,5 +1,9 @@
 # LogConnectionData from './../../result.graphql'
 
 type Query {
+    "Cantidad de eventos de conexión dados"
+    countLogsConnections: Int!
+    "Lista de eventos de conexión"
     logConnections (page: Int = 1, itemsPerPage: Int = 20): LogConnectionData
+    # Dejo para crear una nueva definición logConnection
 }

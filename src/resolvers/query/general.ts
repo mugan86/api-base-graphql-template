@@ -22,7 +22,6 @@ const queryResolvers: IResolvers = {
       console.log(info);
       return `Hola ${args.name}`;
     },
-    countUsers: () => (users) ? users.length : 0,
     randomLocation: (// root info. In type roots always undefined
       _: void,
       // Arguments when specify in schema arguments. If not add arguments

@@ -9,6 +9,7 @@ import users from "./../../data/users.json";
  */
 const queryUsersResolvers: IResolvers = {
   Query: {
+    countUsers: () => (users) ? users.length : 0,
     users: (_: void, args: { page: number, itemsPerPage: number } = { page: 1, itemsPerPage: 20 }):
       {
         status: boolean

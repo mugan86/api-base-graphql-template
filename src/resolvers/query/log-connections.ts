@@ -1,7 +1,8 @@
 import { IResolvers } from "@graphql-tools/utils";
 import { paginate } from "./../../helpers/pagination";
 
-import connections from "./../../data/connections.json";
+import {logs} from "./../../data/repository";
+
 
 /**
  * Resolver to implement queries definitions solutions to return responses.
@@ -9,12 +10,13 @@ import connections from "./../../data/connections.json";
  */
 const queryLogConnectionsResolvers: IResolvers = {
     Query: {
+        countLogsConnections: () => (logs) ? logs.length : 0,
         logConnections: (_: void, args: { page: number, itemsPerPage: number } = { page: 1, itemsPerPage: 20 }): {
             status: boolean
             message: string,
             list?: Array<any>
         } => {
-            const list = paginate(connections, args.itemsPerPage, args.page);
+            const list = paginate(logs, args.itemsPerPage, args.page);
             return (list.length) ?
                 {
                     status: true,
