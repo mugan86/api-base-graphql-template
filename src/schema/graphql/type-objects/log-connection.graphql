@@ -8,6 +8,8 @@ type LogConnection {
     "identificador de la connexión realizada"
     id: Int!
     """
+    // TODO : 4.- userId (Int) y user: User (Resolver de Types)
+
     id del usuario, lo interesante es cambiarlo por el usuario (User) o
     añadir userId con este Int y el user con User y especificar ahí 
     con el resolver de types

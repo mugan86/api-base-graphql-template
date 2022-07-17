@@ -6,6 +6,7 @@ type Query {
     "Obtenemos los usuarios en bloques de 20 usuarios por defecto mediante paginación"
     users (page: Int = 1, itemsPerPage: Int = 20): UserData
     """
+    //TODO : 5.- Quitar esta definición para que de error
     Obtenemos el usuario usando el filtro para dar el usuario seleccionado.
     Deshabilitaré, para que de el error que está añadido 
     en resolvers, pero no en el schema

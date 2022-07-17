@@ -2,7 +2,7 @@ import { IResolvers } from "@graphql-tools/utils";
 
 const typeConnectionResolvers: IResolvers = {
     LogConnection: {
-        //user: () => /** AQUI Tratarlo */
+        //TODO: 3.- user: () => /** AQUI Tratarlo */
     },
 };
 

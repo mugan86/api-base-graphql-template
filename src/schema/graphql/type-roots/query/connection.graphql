@@ -5,5 +5,5 @@ type Query {
     countLogsConnections: Int!
     "Lista de eventos de conexión"
     logConnections (page: Int = 1, itemsPerPage: Int = 20): LogConnectionData
-    # Dejo para crear una nueva definición logConnection
+    # TODO: 2.- Dejo para crear una nueva definición logConnection
 }
