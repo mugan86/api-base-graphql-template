@@ -1,7 +1,7 @@
 import { IResolvers } from "@graphql-tools/utils";
-import { paginate } from "./../../helpers/pagination";
+import { paginate } from "../../helpers/pagination";
 
-import {logs} from "./../../data/repository";
+import { logs } from "../../data";
 
 
 /**

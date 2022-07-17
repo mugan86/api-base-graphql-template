@@ -5,7 +5,7 @@
 
 import { IResolvers } from "@graphql-tools/utils";
 import { addItem } from "../../helpers/file";
-import { users, logs} from "./../../data/repository";
+import { users, logs} from "../../data";
 import { PubSub } from "graphql-subscriptions";
 
 const mutationResolvers: IResolvers = {

@@ -7,7 +7,11 @@ que han relizado los usuarios de este sistema
 type LogConnection {
     "identificador de la connexión realizada"
     id: Int!
-    "id del usuario, lo interesante es cambiarlo por el usuario"
+    """
+    id del usuario, lo interesante es cambiarlo por el usuario (User) o
+    añadir userId con este Int y el user con User y especificar ahí 
+    con el resolver de types
+    """
     user: Int!
     "Fecha del evento de conexión / desconexión"
     data: String!

@@ -1,6 +1,5 @@
 import { IResolvers } from "@graphql-tools/utils";
 import { randomValues } from "../../helpers/random-world-location";
-import users from "../../data/users.json";
 
 /**
  * Resolver to implement queries definitions solutions to return responses.

@@ -1,7 +1,7 @@
 import { IResolvers } from "@graphql-tools/utils";
 import { paginate } from "../../helpers/pagination";
 
-import users from "./../../data/users.json";
+import {users} from "../../data";
 
 /**
  * Resolver to implement queries definitions solutions to return responses.

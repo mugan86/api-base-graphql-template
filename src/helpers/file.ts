@@ -16,7 +16,13 @@ const readFileSync = (path: string): Array<any> => {
         { encoding: "utf8", flag: "r" }));
 };
 
-const addItem = (id: number, connect: boolean, elements: any) => {
+const addItem = (id: number, connect: boolean, elements: Array<any>): {
+  id: number;
+  user: number;
+  data: string;
+  connect: boolean;
+  location: {lat: number, lng: number}
+} => {
     return {
       id: (!elements.length) ? 1 : elements.length + 1,
       user: id,
@@ -26,7 +32,16 @@ const addItem = (id: number, connect: boolean, elements: any) => {
     };
   };
 
-const saveConnection = (id: number, connect: boolean, elements: any) => {
+const saveConnection = (id: number, connect: boolean, elements: Array<any>): {
+  ok: boolean,
+  item?: {
+    id: number;
+    user: number;
+    data: string;
+    connect: boolean;
+    location: {lat: number, lng: number}
+  } | undefined
+} => {
     const jsonPath = path.join(__dirname, "..", "..", "data", "connections.json");
     let connections = [];
     try {
